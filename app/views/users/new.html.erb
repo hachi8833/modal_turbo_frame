@@ -1,7 +1,13 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New user</h1>
+<turbo-frame id="modal">
+  <!-- モーダルのラッパー -->
+  <div data-controller="modal" data-action="turbo:submit-end->modal#hideOnSubmit keydown.esc->modal#hide" role="dialog" tabindex="-1" class="fixed inset-0 z-30 flex items-center justify-center w-full h-screen p-2">
 
-  <%= render "form", user: @user %>
+    <!-- 背景 -->
+    <div class="fixed inset-0 block w-full h-screen cursor-default bg-gray-900/30"></div>
 
-  <%= link_to "Back to users", users_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+    <div class="relative z-20 w-full max-w-2xl max-h-screen overflow-y-auto bg-white rounded-md shadow-lg">
+      <%= render "form", user: @user %>
+       <%= button_tag "Cancel", type: :button, method: :get, data: {action: "modal#hide"}, class: "px-3 py-1 text-sm leading-6 font-medium text-gray-700 bg-white border border-gray-200 rounded-md hover:border-gray-300" %>
+    </div>
+  </div>
+</turbo-frame>
