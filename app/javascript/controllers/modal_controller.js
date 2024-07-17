@@ -6,8 +6,10 @@ export default class extends Controller {
     this.element.focus();
   }
 
-  hide() {
-    this.#modalTurboFrame.src = null;
+  hide(event) {
+    event.preventDefault();
+
+    this.element.remove();
   }
 
   hideOnSubmit(event) {
